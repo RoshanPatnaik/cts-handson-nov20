@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+	<bean id = "dao" class = "com.org.springcore.JdbcImpl">
+		<property name="dbConfig" ref="ds"></property>
+	</bean>
+	
+	<bean id = "ds" class = "com.org.springcore.DBConfig">
+		<property name="dbname" value="MySQL"></property>
+		<property name="dbUrl" value="MySQL URL"></property>
+	</bean>
+	
+	<bean id = "service" class="com.org.springcore.EmployeeService">
+		<property name="empDao" ref="dao"></property>
+	</bean> 
+
+</beans>
