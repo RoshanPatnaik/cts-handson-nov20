@@ -15,7 +15,7 @@
 
 	<bean id="ds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 			<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
-			<property name="url" value="jdbc:mysql://localhost:3306/cts_db"></property>
+			<property name="url" value="jdbc:mysql://localhost:3306/cts_db?useSSL=false"></property>
 			<property name="username" value="root"></property>
 			<property name="password" value="roshan968"></property>
 	</bean>
