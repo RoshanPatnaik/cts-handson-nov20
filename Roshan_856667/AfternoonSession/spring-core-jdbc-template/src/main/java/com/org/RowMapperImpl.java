@@ -13,7 +13,7 @@ public class RowMapperImpl implements RowMapper<Employee> {
 		emp.setId(rs.getInt("id"));
 		emp.setName(rs.getString("name"));
 		emp.setSalary(rs.getDouble("salary"));
-		return null;
+		return emp;
 	}
 	
 }

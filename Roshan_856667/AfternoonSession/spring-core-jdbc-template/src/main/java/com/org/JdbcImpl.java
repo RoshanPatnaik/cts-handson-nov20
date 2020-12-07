@@ -30,8 +30,7 @@ public class JdbcImpl implements EmployeeDao {
 	}
 	
 	public List<Employee> findEmployees(){
-		List<Employee> employees = jdbc.query("select * from employee", new RowMapperImpl());
-		return employees;
+		return jdbc.query("select * from employee", (rs,num) -> new Employee(rs.getInt("id"), rs.getString("name"), rs.getDouble("salary")));
 	}
 
 }

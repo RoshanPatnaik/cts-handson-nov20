@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<table class="table table-stripped">
+	<thead>
+	<tr>
+	<td>Id</td>
+	<td>Name</td>
+	<td>Salary</td>
+	</tr>
+	</thead>
+	<tr th:each="emp:${list}">
+	<td th:text="${emp.id}">Id</td>
+	<td th:text="${emp.name}">Name</td>
+	<td th:text="${emp.salary}">Salary</td>
+	</tr>
+</table>
+
+</body>
+</html>
