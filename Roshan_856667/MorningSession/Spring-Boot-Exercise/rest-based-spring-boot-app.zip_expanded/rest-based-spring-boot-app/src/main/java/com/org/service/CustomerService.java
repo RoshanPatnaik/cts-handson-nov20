@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.org.Customer;
 import com.org.dao.CustomerRepository;
+import com.org.exception.CustomerNotFoundException;
 
 @Service
 public class CustomerService {
@@ -23,10 +24,21 @@ public class CustomerService {
 		return dao.findAll();
 	}
 	
-	public void deleteCustomerById(int id) {
+	public void deleteCustomerById(int id){
 		Optional<Customer> option = dao.findById(id);
 		if(option.isPresent()) {
 			dao.delete(option.get());
+		}
+		
+	}
+	
+	public Customer getCustomerById(int id) throws CustomerNotFoundException {
+		Optional<Customer> option = dao.findById(id);
+		if(option.isPresent()) {
+			return option.get();
+		}
+		else {
+			throw new CustomerNotFoundException("Sorry customer with the ID - "+id+" is not found");
 		}
 	}
 	
