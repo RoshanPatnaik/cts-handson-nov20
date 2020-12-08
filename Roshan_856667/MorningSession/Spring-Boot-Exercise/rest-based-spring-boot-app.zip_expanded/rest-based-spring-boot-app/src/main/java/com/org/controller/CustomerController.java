@@ -28,19 +28,30 @@ public class CustomerController {
 	private CustomerService service;
 	
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public Customer createCustomerAPI(@RequestBody Customer customer) {
+	public ResponseEntity<Object> createCustomerAPI(@RequestBody Customer customer) {
 		service.addCustomer(customer);
-		return customer;
+		return ResponseEntity.status(200).body(customer);
 	}
 	
 	@GetMapping
-	public List<Customer> getAllCustomers(){
-		return service.fetchCustomers();
+	public ResponseEntity<Object> getAllCustomers(){
+		return ResponseEntity.status(200).body(service.fetchCustomers());
 	}
 	
 	@DeleteMapping("{id}")
-	public void deleteCustomerById(@PathVariable int id) {
-		service.deleteCustomerById(id);
+	public ResponseEntity<Object> deleteCustomerById(@PathVariable int id) {
+		ResponseEntity<Object> response = null;
+		try {
+			Customer customer = service.getCustomerById(id);
+			service.deleteCustomerById(id);
+			response = ResponseEntity.status(200).body(customer);
+		}catch(CustomerNotFoundException e){
+			ResponseMessage error = new ResponseMessage();
+			error.setStatusCode(404);
+			error.setDescription(e.getMessage());
+			response = ResponseEntity.status(404).body(error);
+		}
+		return response;
 	}
 	
 	@GetMapping("{id}")
