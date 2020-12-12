@@ -5,4 +5,5 @@ server:
 spring:  datasource:    driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/cts_db
     username: root
-    password: roshan968
+    password: roshan968   security:    oauth2:      resourceserver:        jwt:          issuer-uri: http//localhost:8081/user
+    
